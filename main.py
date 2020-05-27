@@ -982,7 +982,7 @@ def roadmap(call_number, frame_record):
 	#If the player does not toss the final output item, 5 extra frames are needed to obtain jump storage
 	JUMP_STORAGE_NO_TOSS_FRAMES = 5
 
-	while(True)
+	while(True):
 
 		step_index = 0
 		iteration_count = 0
