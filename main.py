@@ -1043,7 +1043,8 @@ def roadmap(call_number, frame_record):
 			evaluation_counter += 1
 			if(evaluation_counter % 500000 == 0):
 				#print(evaluation_counter)
-				print_results("Temp Results.txt",written_step,frames_taken,total_frames,inventory,output_created)
+				pass
+				#print_results("Temp Results.txt",written_step,frames_taken,total_frames,inventory,output_created)
 
 
 				#Use the below steps if you want to wipe everything away and start evaluation anew
