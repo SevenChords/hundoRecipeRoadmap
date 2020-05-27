@@ -1038,7 +1038,7 @@ def roadmap(call_number, frame_record):
 		#print("=======================================")
 		#print("Beginning Evaluation of Search Space...")
 		#Begin the iterative loop
-		while(step_index < 150000000):
+		while(iteration_count < 15000000):
 			#Sanity Check Log Temporary Results
 			evaluation_counter += 1
 			if(evaluation_counter % 500000 == 0):

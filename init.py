@@ -9,7 +9,7 @@ def worker(workQueue, doneQueue):
 		doneQueue.put(result, False)  # schreibe Ergebnis
 
 def work(currentFrameRecord):
-	workerCount = 64
+	workerCount = 8
 	doneQueue = multiprocessing.Queue(workerCount)
 	workQueue = multiprocessing.Queue(workerCount)
 	instances = []
