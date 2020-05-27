@@ -2,30 +2,30 @@ import multiprocessing
 from main import roadmap
 
 def worker(workQueue, doneQueue):
-    while True:
-        job = workQueue.get(True)  # warte auf job
-        # job kann z.B. eine Liste oder ein Dictionary sein, je nachdem, was der Hauptprozess reinschreibt
-        result = roadmap(job[0], job[1])
-        doneQueue.put(result, False)  # schreibe Ergebnis
+	while True:
+		job = workQueue.get(True)  # warte auf job
+		# job kann z.B. eine Liste oder ein Dictionary sein, je nachdem, was der Hauptprozess reinschreibt
+		result = roadmap(job[0], job[1])
+		doneQueue.put(result, False)  # schreibe Ergebnis
 
 def work(currentFrameRecord):
-    workerCount = 64
-    doneQueue = multiprocessing.Queue(workerCount)
-    workQueue = multiprocessing.Queue(workerCount)
-    instances = []
-    for i in range(workerCount):
-        instance = multiprocessing.Process(target=worker, args=(workQueue, doneQueue))
-        instance.daemon = True
-        instance.start()
-        instances.append(instance)
-    for i in range(workerCount):
-        job = [i, currentFrameRecord]
-        workQueue.put(job, False)
-    result = doneQueue.get(True)  # warte auf erstes Ergebnis
-    for instance in instances:
-    	instance.terminate()
-    return result
-    # mach was mit result (restliche Worker laufen weiter, werden aber ignoriert)
+	workerCount = 64
+	doneQueue = multiprocessing.Queue(workerCount)
+	workQueue = multiprocessing.Queue(workerCount)
+	instances = []
+	for i in range(workerCount):
+		instance = multiprocessing.Process(target=worker, args=(workQueue, doneQueue))
+		instance.daemon = True
+		instance.start()
+		instances.append(instance)
+	for i in range(workerCount):
+		job = [i, currentFrameRecord]
+		workQueue.put(job, False)
+	result = doneQueue.get(True)  # warte auf erstes Ergebnis
+	for instance in instances:
+		instance.terminate()
+	return result
+	# mach was mit result (restliche Worker laufen weiter, werden aber ignoriert)
 
 currentFrameRecord = 4412 #4409
 cycle_count = 1
