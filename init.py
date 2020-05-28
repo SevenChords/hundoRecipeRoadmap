@@ -27,7 +27,7 @@ def work(currentFrameRecord):
 	return result
 	# mach was mit result (restliche Worker laufen weiter, werden aber ignoriert)
 
-currentFrameRecord = 4412 #4409
+currentFrameRecord = 4255 #4409
 cycle_count = 1
 while(True):
 	result = work(currentFrameRecord)
